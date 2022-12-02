@@ -11,18 +11,22 @@ namespace Day1
     {
         public int[] Array = new int[3];
 
+        int smallest = 0;
+
         public BiggestNumbers() { }
 
         public void addNumber(int number)
         {
+            if (Array[smallest] < number)
+            {
+                Array[smallest] = number;
+            }
+
             for(int i = 0; i < 3; i++)
             {
-                int current = Array[i];
-                if (current < number)
+                if(Array[i] < Array[smallest])
                 {
-                    Array[i] = number;
-                    addNumber(current);
-                    return;
+                    smallest = i;
                 }
             }
         }

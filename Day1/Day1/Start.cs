@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,15 @@ namespace Day1
 
         static void Main(string[] args)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             Part1();
             Part2();
+
+            sw.Stop();
+
+            Console.WriteLine("Elapsed={0}", sw.ElapsedMilliseconds);
         }
 
         static void Part2()
@@ -39,7 +47,6 @@ namespace Day1
                 }
             }
 
-            biggerNumber.addNumber(current);
 
             Console.WriteLine(biggerNumber.Array.Sum());
         }
@@ -69,10 +76,6 @@ namespace Day1
                 }
             }
 
-            if(current > previousBiggest)
-            {
-                previousBiggest= current;
-            }
 
             Console.WriteLine(previousBiggest);
         }
