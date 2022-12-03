@@ -2,46 +2,59 @@ import java.util.Arrays;
 
 public class Rucksack {
 
-    char[] firstCompartment;
-    char[] secondCompartment;
+    char[] firstLine;
+    char[] secondLine;
+    char[] thirdLine;
     char repeating;
-
     int value;
-    String line;
 
     public Rucksack(String items){
-        line = items;
-        secondCompartment = items.substring(items.length()/2).toCharArray();
-        firstCompartment = items.substring(0,items.length()/2).toCharArray();
+        secondLine = items.substring(items.length()/2).toCharArray();
+        firstLine = items.substring(0,items.length()/2).toCharArray();
     }
 
+    public Rucksack(String first, String second, String third){
+        firstLine = first.toCharArray();
+        secondLine = second.toCharArray();
+        thirdLine = third.toCharArray();
+    }
 
-    public void solve(){
-
-        for (char item1:firstCompartment) {
-            boolean contains = false;
-            for (char item2:secondCompartment) {
-                if(item1 == item2){
-                    contains = true;
-                    break;
-                }
-            }
-            if(contains){
-                repeating = item1;
+    public void solve2(){
+        for (char item1:firstLine) {
+            if(contains(secondLine,item1) && contains(thirdLine,item1)){
+                setValue(item1);
                 break;
             }
         }
+    }
 
-        if(Character.isUpperCase(repeating)){
-            value = repeating - 38;
-        }else{
-            value = repeating - 96;
+    public void solve1(){
+
+        for (char item1:firstLine) {
+            if(contains(secondLine,item1)) {
+                setValue(item1);
+                break;
+            }
         }
     }
 
-    @Override
-    public String toString() {
-
-        return repeating +  " " + value + " " + line + " " + Arrays.toString(firstCompartment) +  " " + Arrays.toString(secondCompartment) + "\n";
+    private void setValue(char item){
+        if(Character.isUpperCase(item)){
+            value = item - 38;
+        }else{
+            value = item - 96;
+        }
     }
+
+    private boolean contains(char[] array,char item1){
+        boolean contains = false;
+        for (char item2:array) {
+            if(item1 == item2){
+                contains = true;
+                break;
+            }
+        }
+        return contains;
+    }
+
 }
