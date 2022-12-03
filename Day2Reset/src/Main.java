@@ -6,10 +6,9 @@ import java.util.List;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException {
 
-        List<String> lines = Files.readAllLines(Path.of("C:\\Users\\Tomas\\Desktop\\AdventOfCode2022Java\\Day2\\src\\input"));
+        List<String> lines = Files.readAllLines(Path.of("C:\\Users\\Tomas\\Desktop\\AdventOfCode\\Day2Reset\\src\\input"));
         List<Round> game = getRounds(lines);
         Game1(game);
         Game2(game);
